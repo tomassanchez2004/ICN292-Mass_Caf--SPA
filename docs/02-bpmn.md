@@ -2,21 +2,9 @@
 
 ## 2.1 BPMN TO-BE
 
-El proceso TO-BE presenta la propuesta de mejora para la gestión de inventario de la cafeteria "la cantina del café" seria la incorporación de un nuevo software,  que lo llamaremos "InventaFood". La propuesta surge a partir del análisis del funcionamiento actual de la cafetería, donde ellos utilizan la app Fudo como herramienta de apoyo para el registro de las ventas, pero se identificó la necesidad de contar con un mayor control sobre los ingredientes utilizados en los productos y sobre las cantidades disponibles en el inventario.
+![BPMN TO-BE](../assets/bpmn-to-be.png)
 
-El proceso comienza con una etapa de configuración y registro, realizada principalmente por la dueña. En esta etapa, la dueña inicia sesión en InventaFood y configura los elementos necesarios para que el sistema pueda gestionar el inventario. Primero, incorpora los productos que vende la cafetería. Luego, configura los ingredientes y las cantidades correspondientes a cada producto, estableciendo la relación entre cada producto vendido y los ingredientes que deben ser descontados del inventario. Además, la dueña configura la merma asociada a cada producto y le envia una solicitud a los trabajadores para que ellos inicien sesion en InventaFood, tambien los asigna al área que corresponda.
-
-Una vez configurado el sistema, se desarrolla la operación. Los trabajadores despues de iniciar sesión en InventaFood ellos acceden a la información correspondiente a su área. En el caso de la barra, el trabajador registra la venta seleccionando el producto vendido. Esta acción permite que InventaFood inicie automáticamente el procesamiento correspondiente sobre el inventario.
-
-El procesamiento automático permite que InventaFood identifique los ingredientes y las cantidades asociadas al producto vendido, descuente dichos ingredientes del inventario, considere la merma previamente configurada para el producto y actualice el stock disponible. De esta forma, el inventario se actualiza a medida que se realizan las ventas, disminuyendo la dependencia de registros manuales y permitiendo mantener información más actualizada sobre las existencias.
-
-Después de actualizar el stock, el sistema verifica si existe algún ingrediente que se encuentre bajo el nivel mínimo establecido. Si ningún ingrediente está bajo el mínimo, los trabajadores pueden continuar normalmente con la operación. Si existe algún ingrediente bajo el mínimo, InventaFood genera una alerta de reposición y notifica esta situación. La dueña puede revisar las alertas generadas y utilizarlas para determinar qué productos deben ser incorporados a la lista de compras.
-
-La reposición de productos se realiza principalmente los martes y viernes. A partir de las necesidades detectadas, la dueña agrega los productos correspondientes a la lista de compras y realiza la compra. El proceso contempla dos alternativas: realizar la compra de manera independiente o utilizar compar directamenta a un proveedor. Si la compra es independiente, la dueña recibe directamente los productos adquiridos. Si se utiliza un proveedor, se envía una solicitud de compra, el proveedor recibe la solicitud, prepara los productos y posteriormente realiza la entrega. Una vez recibidos los productos, la dueña registra su entrada en InventaFood y el sistema actualiza el stock correspondiente.
-
-El proceso también contempla un control general del inventario los viernes. Para esto, la dueña revisa el inventario general registrado en InventaFood y lo compara con el inventario físico disponible en la cafetería. Si no existen diferencias, se confirma el inventario general. En caso de existir diferencias entre las cantidades físicas y las cantidades registradas en el sistema, la dueña realiza el ajuste correspondiente en InventaFood y despues confirma el inventario general.
-
-De esta manera, el proceso TO-BE integra las actividades realizadas por Cocina, Barra y la dueña, además de la interacción con el proveedor cuando corresponde. La principal intervención de InventaFood se concentra en automatizar el procesamiento del inventario asociado a las ventas, generar alertas de reposición y mantener actualizado el registro de existencias, mientras que la dueña conserva el control sobre la configuración del sistema, las compras y la revisión general del inventario.
+El proceso TO-BE incorpora "InventaFood", un software que automatiza la gestión de inventario de la cafetería. El sistema descuenta automáticamente los ingredientes al registrar ventas, genera alertas cuando el stock baja del mínimo y actualiza las existencias al recibir compras. La dueña configura el sistema y supervisa las compras y el control semanal del inventario.
 
 ## 2.2 Breve explicación de las mejoras
 
