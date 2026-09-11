@@ -2,7 +2,7 @@
 
 ## 2.1 BPMN TO-BE
 
-![BPMN TO-BE](../assets/bpmn-to-be.png)
+![BPMN TO-BE](../assets/BPMN%20to-be.png)
 
 El proceso TO-BE incorpora "InventaFood", un software que automatiza la gestión de inventario de la cafetería. El sistema descuenta automáticamente los ingredientes al registrar ventas, genera alertas cuando el stock baja del mínimo y actualiza las existencias al recibir compras. La dueña configura el sistema y supervisa las compras y el control semanal del inventario.
 
