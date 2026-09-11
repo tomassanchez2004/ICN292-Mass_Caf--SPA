@@ -1,4 +1,9 @@
 # 2. Procesos BPMN
+## 2.1 BPMN AS-IS
+
+![BPMN AS-IS](../assets/BPMN%20AS-IS.png)
+
+El BPMN AS-IS muestra cómo se maneja actualmente el inventario en La Cantina del Café. Las ventas se registran en Fudo, pero el control del stock se realiza principalmente de forma manual. Las compras se realizan los martes y viernes, ya sea directamente o mediante proveedores. Al recibir los productos, se actualiza el inventario y se revisa que el stock físico coincida con los registros.
 
 ## 2.2 BPMN TO-BE
 
