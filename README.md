@@ -21,7 +21,7 @@ Actualmente, la gestión del inventario se realiza principalmente mediante plani
 Fudo permite registrar las ventas, pero no permite identificar con suficiente detalle los ingredientes utilizados en cada venta. Por ejemplo, una venta de café con leche no permite determinar exactamente qué tipo y cantidad de café o leche fueron utilizados.
 Debido a esto, la cafetería tiene dificultades para conocer cuánto stock queda, qué productos o ingredientes deben reponerse y cuánto se pierde por mermas o vencimiento de productos.
 
-La revisión general del inventario se realiza los viernes y puede tomar aproximadamente 4 horas. Aparte, durante la semana se realizan revisiones parciales y pueden ser necesarias compras adicionales cuando algún producto o ingrediente se termina.
+La revisión general del inventario se realiza los viernes y puede tomar aproximadamente 4 hora, mientras que las compras se realizan los días martes y viernes. Aparte, durante la semana se realizan revisiones parciales y pueden ser necesarias compras adicionales fuera de los días establecidos cuando algún producto o ingrediente se termina.
 Según la información entregada durante la entrevista, actualmente se producen aproximadamente 2 quiebres de stock por semana.
 ### Consecuencias principales
 - Mayor tiempo dedicado a las revisiones de inventario.
@@ -63,8 +63,7 @@ No se consideran como parte principal del proyecto procesos como contabilidad, r
 Entre los principales requerimientos funcionales se encuentran:
 - Registrar productos e ingredientes.
 - Registrar ingresos de productos e ingredientes.
-- Registrar salidas asociadas a las ventas.
-- Actualizar el stock según las operaciones realizadas.
+- Registrar salidas asociadas a las ventas y actualizar el stock según las operaciones realizadas.
 - Consultar el stock disponible.
 - Definir niveles mínimos para los artículos.
 - Generar alertas cuando el stock alcance o se aproxime al nivel mínimo.
@@ -73,71 +72,42 @@ Entre los principales requerimientos funcionales se encuentran:
 - Permitir a la dueña consultar y modificar el inventario completo.
 - Permitir a los trabajadores consultar el inventario correspondiente a su área.
 - Consultar el historial de inventario.
-
 ### Requerimientos no funcionales
-
-Los requerimientos no funcionales establecen características que debe cumplir el sistema para que pueda ser utilizado de manera adecuada.
-
-Se consideran principalmente:
-
-- **Control de acceso:** el sistema debe restringir las funciones disponibles según el rol del usuario. La dueña tendrá acceso completo, mientras que los trabajadores tendrán acceso limitado a las funciones correspondientes a su área.
-- **Actualización oportuna:** la información del inventario debe actualizarse después de registrar una venta, compra, merma o ajuste, evitando depender de registros manuales realizados posteriormente.
-- **Accesibilidad:** el sistema debe poder utilizarse desde computadores y dispositivos móviles, considerando la forma en que trabajan los usuarios de la cafetería.
-- **Facilidad de uso:** la interfaz debe ser simple y fácil de utilizar para que los trabajadores puedan registrar las operaciones sin que el sistema dificulte el trabajo diario.
-- **Consistencia de la información:** los movimientos registrados deben mantener coherencia entre las operaciones realizadas y el stock disponible, evitando diferencias innecesarias entre el inventario del sistema y el inventario real.
-
+- El sistema debe restringir las funciones disponibles según el rol del usuario. La dueña tendrá acceso completo, mientras que los trabajadores tendrán acceso limitado a las funciones correspondientes a su área.
+- La información del inventario debe actualizarse después de registrar una venta, compra, merma o ajuste, evitando depender de registros manuales.
+- El sistema debe poder utilizarse desde dispositivos móviles y computadores de la cafetería.
+- El sistema debe ser simple y fácil de utilizar para que los trabajadores puedan registrar las operaciones, sin dificultar más su trabajo.
+- Se debe mantener la información de inventario almacenada para evitar diferencias entre el inventario del sistema y el inventario real.
 ### Relación de los requerimientos con el problema
-
 Los requerimientos fueron definidos directamente a partir de las dificultades identificadas en la gestión actual del inventario.
-
-La falta de actualización oportuna se aborda mediante el registro de ingresos, salidas y ventas y mediante la actualización del stock.
-
+La falta de actulización eficiente se aborda mediante el registro de ingresos, ventas y actualización en tiempo real del stock disponible. 
 Las diferencias entre el stock registrado y el stock real se abordan mediante el control de movimientos y la consistencia de la información.
-
 La dificultad para identificar los ingredientes utilizados en cada venta se aborda relacionando los productos con sus ingredientes y permitiendo descontar del inventario las cantidades correspondientes.
-
 Las compras adicionales y las dificultades para saber qué comprar se abordan mediante los niveles mínimos, las alertas de reposición y la lista de reposición.
-
 El problema de las mermas se aborda mediante el registro de las pérdidas de productos e ingredientes.
+Las diferencias de acceso entre la dueña y los trabajadores se abordan mediante el control de acceso según roles de los trabajadores del local.
 
-Finalmente, las diferencias de acceso entre la dueña y los trabajadores se abordan mediante el control de acceso según roles.
-
-Los requerimientos fueron priorizados utilizando **MoSCoW**, identificando aquellos que son indispensables para el funcionamiento de la solución y aquellos que pueden incorporarse posteriormente.
-
----
-
+Los requerimientos fueron priorizados utilizando MoSCoW, identificando aquellos que son indispensables para el funcionamiento de la solución y aquellos que pueden incorporarse posteriormente.
 ## 6. Modelamiento BPMN
-
 ### AS-IS
-
 El modelo AS-IS representa la forma en que actualmente se realiza la gestión de inventario en la cafetería.
 
-El proceso comienza con la revisión del inventario por parte de los trabajadores y la dueña. Luego se identifican los productos o ingredientes que faltan o que se encuentran bajo el nivel mínimo definido, se prepara una lista de compras y se realizan las compras correspondientes.
-
-Posteriormente se reciben los productos adquiridos y se registran en las planillas de inventario cuando existe disponibilidad de tiempo.
+El proceso comienza con la revisión del inventario por parte de los trabajadores y la dueña, para luego identificar los productos o ingredientes que faltan o que se encuentran bajo el nivel mínimo definido, se prepara una lista de compras y se realizan las compras correspondientes y/o se pide producto a proveedores.
+Después de esto, se reciben los productos adquiridos y se registran en las planillas de inventario cuando existe disponibilidad de tiempo.
 
 Este proceso depende principalmente de registros manuales y revisiones periódicas, por lo que la información puede quedar desactualizada.
-
 ### TO-BE
-
 El modelo TO-BE representa el proceso de gestión de inventario utilizando el sistema propuesto.
-
 La dueña configura los productos, ingredientes, cantidades utilizadas y niveles mínimos. Los trabajadores pueden registrar las ventas realizadas y el sistema identifica automáticamente los ingredientes asociados al producto vendido.
 
 A partir de la venta, el sistema descuenta las cantidades correspondientes del inventario y verifica si algún artículo se encuentra bajo su nivel mínimo.
-
 Cuando corresponde, se genera una alerta de reposición que puede ser revisada por la dueña para apoyar la planificación de las compras.
 
-Las compras realizadas también se registran en el sistema, actualizando el stock cuando los productos o ingredientes son recibidos.
-
-Además, las mermas pueden registrarse para mantener el inventario actualizado.
-
+Las compras realizadas también se registran en el sistema, actualizando el stock cuando los productos o ingredientes son recibidos, y las mermas pueden registrarse para mantener el inventario actualizado.
 ### Breve explicación de las mejoras
-
-El principal cambio entre el proceso AS-IS y el TO-BE es el reemplazo de gran parte del registro manual por un sistema que mantiene la información de inventario de manera más oportuna.
+El principal cambio entre el proceso AS-IS y el TO-BE es el reemplazo de gran parte del registro manual por un sistema que mantiene la información de inventario de manera más eficiente y actualizada en tiempo real con las ventas realizadas en la cafetería.
 
 La solución permitirá:
-
 - Actualizar automáticamente el inventario a partir de las ventas.
 - Relacionar cada producto vendido con los ingredientes utilizados.
 - Registrar las entradas provenientes de las compras.
@@ -145,22 +115,17 @@ La solución permitirá:
 - Mantener información actualizada sobre el stock disponible.
 - Controlar los niveles mínimos de inventario.
 - Generar alertas cuando sea necesario realizar una reposición.
-- Facilitar la elaboración de una lista de compras.
+- Facilitar la elaboración de una lista de compras y mejor organización con las idas a comprar.
 - Permitir a la dueña revisar y ajustar el inventario cuando sea necesario.
 - Permitir que los trabajadores consulten la información correspondiente a su área.
 
-Con estas mejoras se busca disminuir el trabajo manual, reducir las compras adicionales y los quiebres de stock y facilitar las decisiones relacionadas con la reposición del inventario.
+Con estas mejoras se busca disminuir el trabajo manual, reducir las compras adicionales, los quiebres de stock y facilitar las decisiones relacionadas con la reposición del inventario.
 
 Los diagramas AS-IS y TO-BE y sus archivos editables se encuentran en la carpeta `assets/`.
-
----
-
 ## 7. Modelo Entidad-Relación
-
-El modelo entidad-relación preliminar representa los principales datos necesarios para soportar el proceso TO-BE.
+El modelo entidad-relación preliminar representa los principales datos necesarios para implementar el proceso TO-BE.
 
 Las principales entidades consideradas son:
-
 - Producto
 - Ingrediente
 - Configuracion_Producto
@@ -176,65 +141,39 @@ Las principales entidades consideradas son:
 - Área
 - Alerta_Reposicion
 
-El modelo permite relacionar los productos con los ingredientes que utilizan, registrar las ventas y sus detalles, controlar el inventario, registrar movimientos, compras y mermas y generar alertas de reposición.
+Este modelo permite relacionar los productos con los ingredientes que utilizan, registrar las ventas y sus detalles, controlar el inventario, registrar movimientos, compras y mermas y generar alertas de reposición.
 
-La entidad `Inventario_de_articulos` permite centralizar el stock de productos e ingredientes, mientras que `Movimiento_Inventario` permite mantener un historial de los cambios realizados.
+La entidad "Inventario_de_articulos" permite centralizar el stock de productos e ingredientes, y la entidad "Movimiento_Inventario" permite mantener un historial de los cambios realizados.
 
-De esta manera, el modelo de datos permite respaldar las principales actividades definidas en el proceso TO-BE.
-
----
-
+Así, el modelo a implementar permite respaldar las principales actividades definidas en el proceso TO-BE.
 ## 8. Arquitectura y tecnologías
-
 La solución se plantea mediante una arquitectura compuesta por una interfaz web, una lógica del sistema y una base de datos.
-
 ### Stack tecnológico propuesto
+- Frontend: React + Vite
+- Backend: Node.js + Express
+- Base de datos: PostgreSQL
+- Entorno de ejecución: Docker + Docker Compose
 
-- **Frontend:** React + Vite
-- **Backend:** Node.js + Express
-- **Base de datos:** PostgreSQL
-- **Entorno de ejecución:** Docker + Docker Compose
-
-La interfaz web permitirá a los usuarios interactuar con el sistema.
-
+El software permitirá a los usuarios interactuar con el sistema.
 El backend procesará las operaciones realizadas, como ventas, compras, mermas y movimientos de inventario.
-
 PostgreSQL almacenará la información relacionada con productos, ingredientes, ventas, inventario, compras, usuarios y movimientos.
-
 Docker y Docker Compose se utilizarán para facilitar la ejecución del sistema en un entorno local reproducible.
-
 La información almacenada permitirá obtener indicadores relacionados con la gestión de inventario y apoyar la toma de decisiones.
-
----
-
 ## 9. Indicadores y resultados esperados
-
-Para evaluar el problema identificado se consideran indicadores relacionados con la gestión del inventario.
-
 Entre los principales aspectos a evaluar se encuentran:
-
 - Tiempo utilizado en las revisiones de inventario.
 - Cantidad de compras adicionales durante la semana.
 - Cantidad de quiebres de stock.
 - Cantidad de mermas.
 
-Como situación inicial, la revisión general del inventario puede tomar aproximadamente **4 horas** y se producen aproximadamente **2 quiebres de stock por semana**.
-
-La solución busca que la información de inventario esté disponible de manera más oportuna y facilite las decisiones de reposición.
-
-Durante la Entrega 2 se podrán obtener datos del sistema que permitan evaluar los cambios producidos en estos indicadores.
-
----
-
+En el proceso actual, la revisión general del inventario puede tomar aproximadamente 4 horas y se producen aproximadamente 2 quiebres de stock por semana.
+La solución busca que la información de inventario esté disponible de manera más eficiente y facilite las decisiones de reposición, disminuyendo el tiempo dedicado a la revisión y actualización de invenatrio.
 ## 10. Plan y relación con la Entrega 2
-
-La Entrega 1 corresponde al diagnóstico y diseño preliminar de la solución.
-
-Los resultados obtenidos en esta etapa servirán como base para la Entrega 2, donde se desarrollará e implementará el sistema.
+Esta primera enrtega corresponde al diagnóstico y diseño preliminar de la solución.
+Los resultados obtenidos en esta etapa servirán como base para la entrega 2, donde se desarrollará e implementará el sistema.
 
 Los principales hitos considerados son:
-
-- Configuración del entorno y estructura inicial del proyecto.
+- Armar estructura inicial del proyecto.
 - Implementación de la base de datos y modelo de datos.
 - Desarrollo del backend y lógica de inventario.
 - Desarrollo de la interfaz web.
@@ -243,12 +182,30 @@ Los principales hitos considerados son:
 - Evaluación de los indicadores y elaboración de resultados.
 - Documentación y preparación de la entrega final.
 
-También se consideraron riesgos relacionados con dificultades durante el desarrollo o integración del software, pérdida o inconsistencia de información, problemas de acceso según el rol del usuario y manejo de datos personales, considerando las disposiciones asociadas a la **Ley 21.719**.
+También se consideraron riesgos relacionados con dificultades durante el desarrollo o integración del software, pérdida o inconsistencia de información, problemas de acceso según el rol del usuario y manejo de datos personales, considerando las disposiciones asociadas a la Ley 21.719.
+## 11. Documentación
+Para revisar el desarrollo completo de cada parte del proyecto, se presentan:
+- [Caso PYME](docs/00-caso-pyme.md)
+- [Requerimientos](docs/01-requerimientos.md)
+- [BPMN AS-IS y TO-BE](docs/02-bpmn.md)
+- [Modelo Entidad-Relación](docs/03-er-preliminar.md)
+- [Arquitectura y stack](docs/04-arquitectura.md)
+- [Plan de Entrega 2 y riesgos](docs/05-plan-E2.md)
 
----
+Los archivos editables y las representaciones gráficas de los modelos se encuentran en la carpeta assets/.
+## 12. Datos equipo
+- Joaquín Lobos / Rut: 21.286.561-3
+- Javiera Pino / Rut: 21.806.895-2
+- Adán Piña / Rut: 21.267.172-k
+- Tomás Sánchez / Rut: 21.569.546-8
 
-## 11. Estructura del repositorio
-
+Paralelo: 100
+### Roles y tareas en el equipo
+- Joaquín Lobos: Definición del objetivo del SIG, actores, alcance, Elaboración modelo BPMN AS-IS, modelamiento estructura GitHub, realización informe.
+- Javiera Pino: Elaboración del modelo BPMN TO-BE, identificación de mejoras propuestas, requerimientos, priorización y trazabilidad, elaboración informe final y modelar estructura de este.
+- Adán Piña: Propuesta de arquitectura y stack tecnológico, planificación entrega 2, realización informe.
+- Tomás Sánchez: Levantamiento del proceso de inventario, identificación del problema, definición del contexto de la PYME, análisis de los procesos BPMN y elaboración del proceso ER, realización informe.
+## 13. Estructura del repositorio
 ```text
 ICN292-Mass_Caf--SPA/
 │
